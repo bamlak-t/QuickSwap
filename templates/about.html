@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Instructions:</h1>
+
+    <article class="media content-section">
+        <div class="media-body">
+            <h5>
+                <span>1: </span>
+                Create a Free Account <a href=" {{ url_for('register') }} ">Here</a>  
+            </h5>
+        </div>
+
+
+    </article>
+
+    <article class="media content-section">
+        <div class="media-body">
+            <h5>
+                <span>2: </span>
+                Login to your account <a href=" {{ url_for('login') }} ">Here</a>  
+            </h5>
+        </div>
+    </article>
+
+    <article class="media content-section">
+        <div class="media-body">
+            <h5>
+                <span>3: </span>
+                Add items to your invintory <a href=" {{ url_for('new_item') }} ">Here</a>  
+            </h5>
+        </div>
+    </article>
+
+    <article class="media content-section">
+        <div class="media-body">
+            <h5>
+                <span>5: </span>
+                After adding items to your invintory, you will be able to trade them with other itmes in the SwapShop
+                <a href=" {{ url_for('index') }} ">Here</a>  
+            </h5>
+        </div>
+    </article>
+
+    <article class="media content-section">
+        <div class="media-body">
+            <h5>
+                <span>6: </span>
+                After adding items to your invintory, you will be able to trade them with other items in the SwapShop
+                <a href=" {{ url_for('index') }} ">Here</a>  
+            </h5>
+        </div>
+    </article>
+
+{% endblock content %}

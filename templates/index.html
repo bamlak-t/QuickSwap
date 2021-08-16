@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for item in invintory.items %}
+        <article class="media content-section">
+          <img class="article-img" src="{{ url_for('static', filename='profile_pics/' + 'default_item.png') }}">
+          <div class="media-body">
+            <div class="article-metadata mt-2">
+              <a class="mr-2" href="{{ url_for('user_items', username=item.seller.username) }}">Seller: {{ item.seller.username }}</a>
+              <small class="text-muted">{{ item.date_posted.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('item', item_id=item.id) }}">{{ item.title }}</a></h2>
+            <div class="article-description">
+              <p style="overflow: hidden; height: 80px; max-height:70px" class="article-content">{{ item.description }}</p>
+              <p style="font-size: 1.5vw; text-align: center;">Value: <span class="article-price">£{{ item.value }}</span></p>
+
+              <form action="{{url_for('item', item_id=item.id)}}">
+                <button type="submit" class="btn btn-primary float-right"> Swap </button>
+              </form>
+
+            </div>
+
+          </div>
+        </article>
+    {% endfor %}
+    {% for page_num in invintory.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if invintory.page == page_num %}
+          <a class="btn btn-info mb-4" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+          <a class="btn btn-outline-info mb-4" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
+{% endblock content %}
+
+{% block sidebar %}
+  <div class="col-md-4">
+    <div class="content-section">
+      <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-0" role="group" aria-label="First group">
+          <button type="button" class="float-left btn btn-success">Price ↑</button>
+          <button type="button" class="btn btn-primary">Price ↓</button>
+        </div>
+        <div class="btn-group mt-2" role="group" aria-label="First group">
+          <button type="button" class="float-left btn btn-success">Date Posted ↑</button>
+          <button type="button" class="btn btn-primary">Date Posted ↓</button>
+        </div>
+        <div class="input-group mt-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text" id="btnGroupAddon">🔍</div>
+          </div>
+          <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="btnGroupAddon">
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock sidebar %}
