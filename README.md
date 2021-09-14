@@ -1,4 +1,4 @@
 # QuickSwap
 Incomplete
 
-App for swapping household and digital items.
+App for swapping household items.
